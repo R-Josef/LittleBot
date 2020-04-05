@@ -4,7 +4,7 @@ QQWebHook的GUI程序
 
 ## 使用方法
 
-1. 前往releases页面下载最新的发行版
+1. 前往[releases页面](https://github.com/R-Josef/LittleBot/releases)下载最新的发行版
 
 2. 双击运行，第一次运行会在当前目录下创建key.txt文件
 
@@ -17,3 +17,5 @@ QQWebHook的GUI程序
 - 回车快速发送消息
 
 - ctrl+回车输入换行符
+
+
