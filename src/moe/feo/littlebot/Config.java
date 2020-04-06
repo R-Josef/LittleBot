@@ -12,7 +12,11 @@ public class Config {
 	
 	private File file;
 	public static LinkedHashMap<String, String> key = new LinkedHashMap<String, String>();
-	
+
+	public Config() {
+		load();
+	}
+
 	public void createFile() {// 如果文件不存在就创建
 		// 获取jar包所在的根目录
 		String jarpath = this.getClass().getClassLoader().getResource("").getPath();

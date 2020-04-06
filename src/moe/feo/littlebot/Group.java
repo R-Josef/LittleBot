@@ -17,8 +17,8 @@ public class Group {
 	public Group(String name, QQWebHook hook) {
 		this.name = name;
 		this.hook = hook;
-		this.history = new String();
-		this.sending = new String();
+		this.history = "";
+		this.sending = "";
 	}
 	
 	public static void load(LinkedHashMap<String, String> map) {
