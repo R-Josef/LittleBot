@@ -1,6 +1,5 @@
 package moe.feo.littlebot;
 import javafx.application.Application;
-import javafx.stage.Stage;
 import moe.feo.littlebot.fxui.FXMain;
 
 import java.awt.BorderLayout;
@@ -21,10 +20,14 @@ public class LittleBot {
 					Application.launch(FXMain.class, fxArgs);
 					break;
 				case "swing":
+					swingInit();
+					break;
 				default:
 					swingInit();
 					break;
 			}
+		} else {
+			swingInit();
 		}
 	}
 
