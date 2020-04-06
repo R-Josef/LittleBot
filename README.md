@@ -28,4 +28,14 @@ QQWebHook的GUI程序
 
 `java -jar LittleBot.jar swing` 启用Swing的UI
 
+Windows下可在程序同目录下新建文本文件，命名为`run.bat`，然后写入以下内容：
 
+```
+@echo off 　　
+if "%1" == "h" goto begin 
+mshta vbscript:createobject("wscript.shell").run("%~nx0 h",0)(window.close)&&exit 
+:begin
+java -jar LittleBot.jar fx
+```
+
+之后再双击`run.bat`就能以JavaFx版本的ui启动了。
