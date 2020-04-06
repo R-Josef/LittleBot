@@ -11,7 +11,19 @@ import java.util.LinkedHashMap;
 public class Config {
 	
 	private File file;
-	public static LinkedHashMap<String, String> key = new LinkedHashMap<String, String>();
+	public LinkedHashMap<String, String> key = new LinkedHashMap<String, String>();
+	private static Config config;
+	
+	public static synchronized Config getInstance() {
+		if (config == null) {
+			config = new Config();
+		}
+		return config;
+	}
+	
+	private Config() {
+		load();
+	}
 	
 	public void createFile() {// 如果文件不存在就创建
 		// 获取jar包所在的根目录
@@ -41,6 +53,9 @@ public class Config {
 			in = new FileReader(file);
 			bfin = new BufferedReader(in);
 			String line = null;
+			if (!key.isEmpty()) {
+				key.clear();
+			}
 			while ((line = bfin.readLine()) != null) {
 				String[] strs = line.split("=");
 				if (strs.length == 2) {

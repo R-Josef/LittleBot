@@ -34,7 +34,7 @@ public class GUI implements ActionListener, KeyListener, ChangeListener {
 	
 	public void draw() {
 		//选项卡
-		for (Group group : Group.list) {
+		for (Group group : Group.GroupMannager.getInstance().list) {
 			tab.add(group.name, null);
 		}
 		tab.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -113,7 +113,7 @@ public class GUI implements ActionListener, KeyListener, ChangeListener {
 			group.sending = this.inputbox.getText();
 		}
 		int index = tab.getSelectedIndex();// 这个index和list中的list应该是一样的
-		group = Group.list.get(index);// 更换group对象
+		group = Group.GroupMannager.getInstance().list.get(index);// 更换group对象
 		// 恢复group对象中的历史记录和输入框
 		this.history.setText(group.history);
 		this.inputbox.setText(group.sending);
