@@ -7,13 +7,13 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import moe.feo.littlebot.Group;
-
+import moe.feo.littlebot.Group.GroupMannager;
 import javafx.scene.input.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Controller {
-    private Group group = Group.list.get(0);
+    private Group group = GroupMannager.getInstance().list.get(0);
 
     @FXML
     TabPane tabPane;
@@ -25,7 +25,7 @@ public class Controller {
     Button sendButton;
 
     public void init(){
-        for (Group group : Group.list) {
+        for (Group group : GroupMannager.getInstance().list) {
             Tab tab = new Tab(group.name);
             tabPane.getTabs().add(tab);
         }
@@ -70,7 +70,7 @@ public class Controller {
             group.sending = inputTextArea.getText();
         }
         int index = tabPane.getSelectionModel().getSelectedIndex();// 这个index和list中的list应该是一样的
-        group = Group.list.get(index);// 更换group对象
+        group = GroupMannager.getInstance().list.get(index);// 更换group对象
         // 恢复group对象中的历史记录和输入框
         historyTextArea.setText(group.history);
         inputTextArea.setText(group.sending);

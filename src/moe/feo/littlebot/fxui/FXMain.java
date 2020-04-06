@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import moe.feo.littlebot.Config;
-import moe.feo.littlebot.Group;
+import moe.feo.littlebot.Group.GroupMannager;
 
 import javax.swing.*;
 
@@ -17,14 +17,13 @@ public class FXMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         loader = new FXMLLoader();
-        Config cfg = new Config();
-
-        if (Config.key.isEmpty()) {
+        
+        if (Config.getInstance().key.isEmpty()) {
             JOptionPane.showMessageDialog(null, "请在当前目录下的Key.txt文件中写入Key\n格式为: [群名称]=[key]");
             Platform.exit();
             return;
         }
-        Group.load(Config.key);
+        GroupMannager.getInstance().load(Config.getInstance().key);
 
         loader.setLocation(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
@@ -33,7 +32,7 @@ public class FXMain extends Application {
 
         primaryStage.setTitle("LittleBot");
         primaryStage.setResizable(false);
-//        primaryStage.getIcons().add(new Image("/icon.png"));
+        //primaryStage.getIcons().add(new Image("/icon.png"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
