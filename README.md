@@ -8,7 +8,7 @@ QQWebHook的GUI程序
 
 2. 双击运行，第一次运行会在当前目录下创建key.txt文件
 
-3. 在key.txt文件中填好qqwebhook的Key，格式为[名称]=[KEY]，一行一个
+3. 在key.txt文件中填好qqwebhook的Key，格式为{名称}={KEY}，一行一个
 
 4. 关闭并重新运行程序
 
@@ -19,3 +19,13 @@ QQWebHook的GUI程序
 - ctrl+回车输入换行符
 
 - 可同时对多个key进行操作
+
+## UI切换
+
+默认的UI是Swing的，另外还可以选择JavaFx的UI。通过在启动时给参数就可以指定UI，例如：
+
+`java -jar LittleBot.jar fx` 启用JavaFx的UI
+
+`java -jar LittleBot.jar swing` 启用Swing的UI
+
+
