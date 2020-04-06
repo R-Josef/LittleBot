@@ -1,12 +1,16 @@
 package moe.feo.littlebot;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -56,6 +60,9 @@ public class GUI implements ActionListener, KeyListener, ChangeListener {
 		inputpanel.setLayout(new BorderLayout());
 		inputpanel.add(BorderLayout.EAST, send);
 		inputpanel.add(BorderLayout.CENTER, inputscroll);
+		//icon图标
+		URL imageurl = this.getClass().getClassLoader().getResource("icon.png");
+		Image image= Toolkit.getDefaultToolkit().getImage(imageurl);
 		//将组件加入框架
 		frame.add(BorderLayout.NORTH, tab);
 		frame.add(BorderLayout.CENTER, historyscroll);
@@ -63,6 +70,7 @@ public class GUI implements ActionListener, KeyListener, ChangeListener {
 		//框架设置
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(300, 300);
+		frame.setIconImage(image);
 		frame.setVisible(true);
 	}
 	

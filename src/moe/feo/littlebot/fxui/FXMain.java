@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import moe.feo.littlebot.Config;
 import moe.feo.littlebot.Group.GroupMannager;
@@ -32,7 +33,7 @@ public class FXMain extends Application {
 
         primaryStage.setTitle("LittleBot");
         primaryStage.setResizable(false);
-        //primaryStage.getIcons().add(new Image("/icon.png"));
+        primaryStage.getIcons().add(new Image("icon.png"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
