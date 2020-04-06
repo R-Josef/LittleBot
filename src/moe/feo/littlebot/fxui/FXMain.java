@@ -40,9 +40,4 @@ public class FXMain extends Application {
     @Override
     public void stop() throws Exception {
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
 }
