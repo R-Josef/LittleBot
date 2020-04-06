@@ -6,13 +6,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.LinkedHashMap;
 
 public class Config {
 	
 	private File file;
+	public static LinkedHashMap<String, String> key = new LinkedHashMap<String, String>();
 	
-	public void createFile() {
-		String jarpath = this.getClass().getClassLoader().getResource("").getPath();// 获取jar包所在的根目录
+	public void createFile() {// 如果文件不存在就创建
+		// 获取jar包所在的根目录
+		String jarpath = this.getClass().getClassLoader().getResource("").getPath();
 		try {
 			jarpath = URLDecoder.decode(jarpath, "utf-8");// 转换编码以防乱码
 		} catch (UnsupportedEncodingException e1) {
@@ -30,14 +33,20 @@ public class Config {
 		
 	}
 	
-	public String getKey() {
-		String key = null;
+	public void load() {// 加载key.txt
+		createFile();
 		FileReader in = null;
 		BufferedReader bfin = null;
 		try {
 			in = new FileReader(file);
 			bfin = new BufferedReader(in);
-			key = bfin.readLine();
+			String line = null;
+			while ((line = bfin.readLine()) != null) {
+				String[] strs = line.split("=");
+				if (strs.length == 2) {
+					key.put(strs[0], strs[1]);
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -49,6 +58,7 @@ public class Config {
 			} catch (NullPointerException e) {
 			}
 		}
-		return key;
+		
 	}
+	
 }
