@@ -2,45 +2,36 @@ package moe.feo.littlebot;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 
 public class LittleBot {
 	
 	public static void main(String[] args) {
-		Config cfg = new Config();
-		cfg.load();
-		
-		if (Config.key.isEmpty()) {
+		System.setProperty("sun.java2d.opengl", "true");
+		System.setProperty("sun.java2d.d3d", "false");
+		Config cfg = Config.getInstance();
+		if (cfg.key.isEmpty()) {
 			LittleBot.noKey();
 			return;
 		}
-		Group.load(Config.key);
+		Group.GroupMannager.getInstance().load(cfg.key);
 		new GUI().draw();
 	}
 	
 	public static void noKey() {
 		//提示标签
-		JLabel label = new JLabel("请在当前目录下的Key.txt文件中写入Key");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		//提示文本框
-		JTextArea info = new JTextArea();
-		info.setText("格式:"
-				+ System.lineSeparator()
-				+ "<名称>=<KEY>"
-				+ System.lineSeparator()
-				+ "示例: "
-				+ System.lineSeparator()
-				+ "MyGroup=02aca1e815814b5ab8f3dc88ff74bbebfb4f2e79"
-				+ System.lineSeparator()
-				+ "注: 名称可以随意填写, 但是key一定要填写正确, 允许写入多个不同群的key.");
-		info.setEditable(false);
-		info.setLineWrap(true);
+		JLabel label = new JLabel("<html><div align='center'><font color='#708090' size='3'>"
+				+ "<font color='#CD5C5C' size='5'>未找到Key.</font><br>"
+				+ "请在当前目录下的Key.txt文件中写入Key.<br>"
+				+ "格式: &lt;名称&gt;=&lt;KEY&gt;<br>"
+				+ "示例: MyGroup=02aca1e815814b5a<br>"
+				+ "名称可以随意填写, 但是key一定要填写正确<br>"
+				+ "允许写入多个不同群的key, 一行一个."
+				+ "</font></div></html>");
+		label.setHorizontalAlignment(JLabel.CENTER);
 		//框架设置
 		JFrame frame = new JFrame("LittleBot");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(BorderLayout.NORTH, label);
-		frame.add(BorderLayout.CENTER, info);
+		frame.add(BorderLayout.CENTER, label);
 		frame.setSize(300, 300);
 		frame.setVisible(true);
 	}
