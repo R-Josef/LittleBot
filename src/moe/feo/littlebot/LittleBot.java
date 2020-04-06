@@ -1,11 +1,34 @@
 package moe.feo.littlebot;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import moe.feo.littlebot.fxui.FXMain;
+
 import java.awt.BorderLayout;
+import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class LittleBot {
 	
 	public static void main(String[] args) {
+		if(args.length >= 1){
+			String choose = args[0];
+			switch (choose){
+				case "fx":
+					String[] fxArgs = null;
+					if(args.length >= 2)
+						fxArgs = Arrays.copyOfRange(args, 1, args.length);
+					Application.launch(FXMain.class, fxArgs);
+					break;
+				case "swing":
+				default:
+					swingInit();
+					break;
+			}
+		}
+	}
+
+	public static void swingInit(){
 		System.setProperty("sun.java2d.opengl", "true");
 		System.setProperty("sun.java2d.d3d", "false");
 		Config cfg = Config.getInstance();
@@ -16,7 +39,7 @@ public class LittleBot {
 		Group.GroupMannager.getInstance().load(cfg.key);
 		new GUI().draw();
 	}
-	
+
 	public static void noKey() {
 		//提示标签
 		JLabel label = new JLabel("<html><div align='center'><font color='#708090' size='3'>"
