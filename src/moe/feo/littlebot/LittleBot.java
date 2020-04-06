@@ -9,7 +9,6 @@ public class LittleBot {
 	
 	public static void main(String[] args) {
 		Config cfg = new Config();
-		cfg.load();
 		
 		if (Config.key.isEmpty()) {
 			LittleBot.noKey();
